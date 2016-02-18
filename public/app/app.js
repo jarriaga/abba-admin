@@ -12,7 +12,7 @@ var appAuthFactory  =   angular.module('appAuthFactory',[]);
 
 var options = {};
 options.api = {};
-options.api.base_url = "http://admin.abba.local";
+options.api.base_url = "";
 
 
 
