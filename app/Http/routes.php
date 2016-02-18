@@ -11,6 +11,12 @@
 |
 */
 
-$app->get('/', function () use ($app) {
+$app->get('/v1', function () use ($app) {
     return $app->version();
 });
+
+
+
+$app->post('/auth/login', ['as'=>'authentication','uses'=>'AuthController@postAuth']);
+$app->post('/auth/logout', ['as'=>'authentication','uses'=>'AuthController@postLogout']);
+$app->post('/data',['as'=>'data','uses'=>'AuthController@postData']);

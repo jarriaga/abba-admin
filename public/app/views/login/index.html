@@ -1,0 +1,75 @@
+<div class="padding-15">
+
+  <div class="login-box">
+
+    <!-- login form -->
+    <form name="loginForm" method="post" class="sky-form boxed " novalidate ng-submit="login(login.email,login.password)">
+      <header><i class="fa fa-users"></i> Iniciar Sesi&oacuten</header>
+
+      <div ng-show="showError" class="alert alert-danger noborder text-center weight-400 nomargin noradius">
+          {{showError}}
+      </div>
+      <!--
+
+
+      <div class="alert alert-warning noborder text-center weight-400 nomargin noradius">
+        Account Inactive!
+      </div>
+
+      <div class="alert alert-default noborder text-center weight-400 nomargin noradius">
+        <strong>Too many failures!</strong> <br />
+        Please wait: <span class="inlineCountdown" data-seconds="180"></span>
+      </div>
+      -->
+
+      <fieldset>
+
+        <section>
+          <label class="label">E-mail</label>
+          <label class="input">
+            <i class="icon-append fa fa-envelope"></i>
+            <input class="" type="email" ng-model="login.email" required>
+            <span class="tooltip tooltip-top-right">Tu email</span>
+          </label>
+        </section>
+
+        <section>
+          <label class="label">Password</label>
+          <label class="input">
+            <i class="icon-append fa fa-lock"></i>
+            <input class="" type="password" ng-model="login.password" required>
+            <b class="tooltip tooltip-top-right">Escribe tu password</b>
+          </label>
+          <!--
+          <label class="checkbox"><input type="checkbox" name="checkbox-inline" checked><i></i>Mantener tu sesi&oacuten</label>
+          -->
+        </section>
+
+      </fieldset>
+
+      <footer>
+        <button type="submit" class="btn btn-primary pull-right" ng-disabled="loginForm.$invalid">Entrar</button>
+        <div class="forgot-password pull-left">
+          <a href="page-password.html">Olvidaste tu password?</a> <br />
+          <a ng-href="#/signup"><b>Registrate tu cuenta aqu&iacute</b></a>
+        </div>
+      </footer>
+    </form>
+    <!-- /login form -->
+
+    <hr />
+<!--
+    <div class="text-center">
+      Or sign in using:
+    </div>
+
+
+    <div class="socials margin-top-10 text-center"><!-- more buttons: ui-buttons.html
+      <a href="#" class="btn btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
+      <a href="#" class="btn btn-twitter"><i class="fa fa-twitter"></i> Twitter</a>
+    </div>
+  -->
+
+  </div>
+
+</div>
