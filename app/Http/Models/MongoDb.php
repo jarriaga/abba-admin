@@ -14,14 +14,21 @@ namespace App\Http\Models;
 Abstract class MongoDb {
 
     static protected   $database;
-    static protected   $collection;
-    static protected   $nameCollection;
+    protected   $collection;
+    protected   $nameCollection;
     protected   $fields;
+
+
+    public function __construct()
+    {
+        $this->setConnection();
+        $this->setCollection();
+    }
 
     /**
      *  This function Define and assign the database
      */
-    static function setConnection()
+    private function setConnection()
     {
         $cn     =   new \MongoClient();
         if(env('DB_ENV','development')=='development')
@@ -35,15 +42,21 @@ Abstract class MongoDb {
      */
     static public function getDatabase()
     {
-        self::setCollection();
         return self::$database;
     }
 
-
-    public static function getCollection()
+    /**
+     * This function Assign the collection with the name assigned in the derivated class
+     */
+    public function setCollection()
     {
-        self::setConnection();
-        $collection = new \MongoCollection(self::$database,static::$nameCollection);
+        $cl =  $this->nameCollection;
+        $this->collection = self::$database->$cl;
+    }
+
+    public function getCollection()
+    {
+        $collection = new \MongoCollection(self::$database,$this->nameCollection);
         return $collection;
     }
 
@@ -66,4 +79,4 @@ Abstract class MongoDb {
             return $this->fields[$property];
     }
 
-} 
+}

@@ -25,15 +25,18 @@
 	<!--
 		.boxed = boxed version
 	-->
-	<body ng-app="app">
+	<body ng-app="app" ng-controller="mainController">
 
+	<div ng-include="'/app/partials/menu.html'"></div>
+
+	<div ng-include="'/app/partials/header.html'"></div>
 
 		<!-- WRAPPER -->
-		<div id="wrapper" class="clearfix" ng-view>
+
+			<div id="wrapper" class="clearfix" ng-view>
 
 
-
-		</div>
+			</div>
 
 
 
@@ -41,7 +44,7 @@
 		<!-- JAVASCRIPT FILES -->
 		<script type="text/javascript">var plugin_path = 'assets/plugins/';</script>
 		<script type="text/javascript" src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
-		<script type="text/javascript" src="assets/js/app.js"></script>
+		<!--<script type="text/javascript" src="assets/js/app.js"></script>-->
 
 
 		<!-- STYLESWITCHER - REMOVE -->
@@ -55,12 +58,13 @@
 		<script type="text/javascript" src="app/app.js"></script>
 		<script type="text/javascript" src="app/app.routes.js"></script>
 		<script type="text/javascript" src="app/factories/auth.factory.js"></script>
-    	<script type="text/javascript" src="app/controllers/login.controllers.js"></script>
-		<script	type="text/javascript" src="app/controllers/admin.controllers.js"></script>
+    	<script type="text/javascript" src="app/controllers/module_login.js"></script>
+		<script type="text/javascript" src="app/controllers/module_home.js"></script>
+		<script type="text/javascript" src="app/controllers/module_catalogos.js"></script>
 
+		<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-
-
+		<script type="text/javascript" src="assets/plugins/select2/js/select2.full.min.js"></script>
 
 	</body>
 </html>

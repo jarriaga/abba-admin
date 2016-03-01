@@ -4,9 +4,9 @@
 
 
 //If the user is authenticate
-appAuthFactory.factory('AuthenticationService',function(){
+app.factory('AuthenticationService',function(){
        var auth =   {
-           isLogged     :       false
+           isAuthenticated     :       false
        }
         return  auth;
 });
@@ -40,6 +40,7 @@ appAuthFactory.factory('TokenInterceptor', function ($q, $window, $location, Aut
 
         /* Set Authentication.isAuthenticated to true if 200 received */
         response: function (response) {
+
             if (response != null && response.status == 200 && $window.sessionStorage.token && !AuthenticationService.isAuthenticated) {
                 AuthenticationService.isAuthenticated = true;
             }

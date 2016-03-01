@@ -9,8 +9,6 @@
  */
 
 namespace App\Http\Models;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class Estado extends MongoDb{
 
@@ -33,6 +31,11 @@ class Estado extends MongoDb{
         $instance   =   new static;
         $regionEdo    =   $instance->collection->find($array);
         return  $regionEdo;
+    }
+
+    public function hola()
+    {
+        return 'aja';
     }
 
 

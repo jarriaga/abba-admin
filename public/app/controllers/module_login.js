@@ -2,8 +2,6 @@
     appLoginModule.controller('loginController',['$scope','UserService', 'AuthenticationService','$window','$location',function($scope,UserService, AuthenticationService,$window,$location){
 
 
-
-
         $scope.login = function(email, password) {
             if (email != null && password != null) {
                 UserService.logIn(email, password)

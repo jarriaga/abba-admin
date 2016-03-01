@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class User extends MongoDb {
 
-    static protected   $nameCollection = 'usuarios';
+    protected   $nameCollection = 'usuarios';
     protected   $fields;
 
     /**

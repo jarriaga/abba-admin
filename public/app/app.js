@@ -2,13 +2,25 @@
  * Created by jbarron on 2/4/16.
  */
 
-    //Aplicacion principal
-var app             =   angular.module('app',['ngRoute','appLoginModule','appAuthFactory','appAdminModule']);
-    //Modulos del sistema
+    //Application
+var app             =   angular.module('app',['ngRoute','appLoginModule','appAuthFactory','moduleHome','moduleCatalogos']);
+    //Factory and Login
 var appLoginModule  =   angular.module('appLoginModule',[]);
-var appAdminModule   =   angular.module('appAdminModule',[]);
 var appAuthFactory  =   angular.module('appAuthFactory',[]);
 
+
+//Modules
+var moduleHome   =   angular.module('moduleHome',[]);
+var moduleCatalogos =   angular.module('moduleCatalogos',[]);
+
+
+app.controller('mainController',['$scope','AuthenticationService',function($scope,AuthenticationService){
+
+    $scope.main = AuthenticationService;
+
+
+
+}]);
 
 var options = {};
 options.api = {};

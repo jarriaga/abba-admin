@@ -17,9 +17,14 @@ app.config( ['$routeProvider',
                 controller  :   'loginController',
                 access      :   {   requiredAuthentication  :   false }
             })
+            .when('/ciudades',{
+                templateUrl :   'app/views/catalogos/ciudades.html',
+                controller  :   'ciudadesController',
+                access      :   {   requiredAuthentication  :   false  }
+            })
             .when('/', {
                 templateUrl :   'app/views/admin/index.html',
-                controller  :   'adminController',
+                controller  :   'homeController',
                 access      :   {   requiredAuthentication  :   true }
             });
     }

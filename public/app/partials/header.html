@@ -1,0 +1,205 @@
+
+<!-- HEADER -->
+<header id="header" ng-show="main.isAuthenticated">
+
+    <!-- Mobile Button -->
+    <button id="mobileMenuBtn"></button>
+
+    <!-- Logo -->
+				<span class="logo pull-left">
+					<a ng-href="/#/"><img src="assets/images/logo_light.png" alt="admin panel" height="35" /></a>
+				</span>
+
+    <form method="get" action="page-search.html" class="search pull-left hidden-xs">
+        <input type="text" class="form-control" name="k" placeholder="Search for something..." />
+    </form>
+
+    <nav>
+
+        <!-- OPTIONS LIST -->
+        <ul class="nav pull-right">
+
+            <!-- USER OPTIONS -->
+            <li class="dropdown pull-left">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                    <img class="user-avatar" alt="" src="assets/images/noavatar.jpg" height="34" />
+								<span class="user-name">
+									<span class="hidden-xs">
+										John Doe <i class="fa fa-angle-down"></i>
+									</span>
+								</span>
+                </a>
+                <ul class="dropdown-menu hold-on-click">
+                    <li><!-- my calendar -->
+                        <a href="calendar.html"><i class="fa fa-calendar"></i> Calendar</a>
+                    </li>
+                    <li><!-- my inbox -->
+                        <a href="#"><i class="fa fa-envelope"></i> Inbox
+                            <span class="pull-right label label-default">0</span>
+                        </a>
+                    </li>
+                    <li><!-- settings -->
+                        <a href="page-user-profile.html"><i class="fa fa-cogs"></i> Settings</a>
+                    </li>
+
+                    <li class="divider"></li>
+
+                    <li><!-- lockscreen -->
+                        <a href="page-lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
+                    </li>
+                    <li><!-- logout -->
+                        <a ng-href="#/logout"><i class="fa fa-power-off"></i> Log Out</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- /USER OPTIONS -->
+
+        </ul>
+        <!-- /OPTIONS LIST -->
+
+    </nav>
+
+</header >
+<!-- /HEADER -->
+
+
+
+
+<script>
+
+    /** Aside
+     **************************************************************** **/
+    function _aside() {
+
+        // Mobile Button
+        jQuery("#mobileMenuBtn").bind("click", function(e) {
+            e.preventDefault();
+
+            jQuery(this).toggleClass('active');
+
+            if(window.width > 768) {
+
+                if(jQuery('body').hasClass('min')) {
+
+                    jQuery('body').removeClass('min');
+                    jQuery("#sideNav>h3").show();
+                    jQuery("#middle").css({"margin-left":""});
+
+                } else {
+
+                    jQuery("#middle").css({"margin-left":"0"});
+                    jQuery('body').addClass('min');
+
+                    if(jQuery('#aside nav li.el_primary.menu-open ul.sub-menu').prop('style')) {
+                        jQuery('#aside nav li.el_primary.menu-open ul.sub-menu').prop('style').removeProperty("display");
+                    }
+
+                    jQuery("#sideNav>h3").hide();
+                    jQuery('#aside nav li.el_primary').removeClass('menu-open');
+
+                }
+
+            } else {
+
+                if(jQuery('body').hasClass('menu-open')) {
+
+                    jQuery('body').removeClass('menu-open');
+                    jQuery("#sideNav>h3").show();
+                    jQuery("#middle").css({"margin-left":""});
+
+                } else {
+
+                    jQuery("#middle").css({"margin-left":"0"});
+                    jQuery('body').addClass('menu-open');
+
+                    if(jQuery('#aside nav li.el_primary.menu-open ul.sub-menu').prop('style')) {
+                        jQuery('#aside nav li.el_primary.menu-open ul.sub-menu').prop('style').removeProperty("display");
+                    }
+
+                    jQuery("#sideNav>h3").show();
+                    jQuery('#aside nav li.el_primary').removeClass('menu-open');
+
+                }
+
+            }
+        });
+
+
+
+        /** -------------------------------------------------------------------------------------- **/
+            // Add an ID for each primary LI element (first dropdown)
+        count = 0;
+        jQuery('#aside ul.nav > li').each(function() {
+            jQuery(this).addClass('el_primary');
+            jQuery(this).attr('id', 'el_' + count);
+            count++;
+        });
+
+
+        // Multilevel Navigation
+        jQuery('#aside ul.nav li a').bind("click", function(e) {
+
+            var _t 		= jQuery(this),
+                    _href 	= _t.attr('href');
+
+            if(_href == '#') {
+                e.preventDefault();
+            }
+
+            var find_li = jQuery(this).closest('li');
+
+            if(!find_li.hasClass('always-open')) {
+
+                var _id		= find_li.attr('id');
+
+                // Hide other open submenus
+                if(find_li.hasClass('el_primary')) {
+                    jQuery("#aside ul.nav li>ul").each(function() {
+                        var __id = jQuery(this).closest('li').attr('id');
+                        if(__id != _id) {
+                            jQuery(this).slideUp(200, function() {
+                                jQuery(this).parent().removeClass('menu-open');
+                            });
+                        }
+                    });
+
+                }
+
+
+                // Slide toggle
+                jQuery(this).next().slideToggle(200, function() {
+
+                    if(jQuery(this).is(":visible")) {
+                        find_li.addClass('menu-open');
+                    } else {
+                        find_li.removeClass('menu-open active');
+                    }
+
+                });
+
+            }
+
+        });
+        /** -------------------------------------------------------------------------------------- **/
+
+
+    }
+
+
+    function _asideFix() {
+
+        if(window.width > 768) {
+
+            if(jQuery("body").hasClass('menu-open')) {
+                jQuery("#middle").css({"margin-left":""});
+            }
+
+        }
+
+    }
+
+
+    _aside();
+    _asideFix();
+
+</script>

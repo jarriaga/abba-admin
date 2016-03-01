@@ -37,7 +37,8 @@ class AuthController extends Controller
             return response()->json(['error'=>'Unauthorized'],Response::HTTP_UNAUTHORIZED);
         }
 
-        $usuario =   User::getCollection()->findOne(['email'=>$params['email']]);
+        $usuario    =   new User();
+        $usuario =   $usuario->getCollection()->findOne(['email'=>$params['email']]);
 
         if($usuario &&  isset($usuario['password']) && Hash::check($params['password'], $usuario['password'])){
             $usuario['password']='';
