@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Models\Estado;
+use App\Http\Odm\Documents\Usuario;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\App;
 
 
 class EstadosController extends Controller
@@ -36,6 +38,13 @@ class EstadosController extends Controller
     public function getEstado($idEstado)
     {
         $estado     =   new Estado();
-        $estadoInfo =   $estado->getEstadoyRegiones($idEstado);
+        $regiones   =   $estado->getEstadoyRegiones($idEstado);
+
+        return response()->json($regiones,200);
+        /* $dm = App::make('ODM');
+        $user = new Usuario();
+        $user->setName('Jesus Tesaaaat ODM');
+        $dm->persist($user);
+        $dm->flush(); */
     }
 }

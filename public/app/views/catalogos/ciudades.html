@@ -24,6 +24,28 @@
                         </select>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <br>
+                            <div class="table-responsive">
+                                <table class="table table-striped nomargin">
+                                    <thead>
+                                    <tr>
+                                        <th>Region</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat=" region in regiones">
+                                        <td>{{region.nombre}}</td>
+                                        <td>{{region.status}}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /panel content -->
             </div>

@@ -43,10 +43,24 @@ class Estado extends MongoDb{
         return  $data;
     }
 
+
+    /**
+     * Funcion que retorna las regiones de un estado dado
+     * @param $idEstado
+     * @return array|bool
+     */
     public function getEstadoyRegiones($idEstado)
     {
-        $data       =    $this->getCollection()->find(['_id'=>$idEstado]);
-        return  $data;
+        $data       =    $this->getCollection()->find(['_id'=>new \MongoId($idEstado)],['region'=>1]);
+        if(!$data->count())
+            return false;
+
+        $array = $data->next();
+        $result=[];
+        foreach($array['region'] as $region){
+            $result[]=["id"=>$region['_idMunicipio']->{'$id'},"nombre"=>$region["nombre"],"status"=>$region["status"]];
+        }
+        return  $result;
     }
 
 }

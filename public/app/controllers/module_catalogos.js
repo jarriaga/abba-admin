@@ -10,9 +10,20 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
 
     $scope.estadosApi = [];
     $scope.data={};
+    $scope.regiones={};
 
     $scope.cambiarEstado = function(){
         console.log($scope.data);
+        $http({
+           method   :   'GET',
+            url     :   '/api/estado/'+$scope.data.estadoSeleccionado
+        }).then(function(response){
+            $scope.regiones =   response.data;
+          console.log(response.data);
+        },  function(   response ){
+            //error
+        });
+
     }
 
     //function to retrieve all estados from the API
@@ -36,7 +47,7 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
     $scope.getEstados();
 
 
-    // *********************************    CODE FOR JQUERY ONLY
+    // *********************************    CODE FOR JQUERY ONLY MINIMIZAR PANELES
     (function(){
         jQuery(document).ready(function(){
             jQuery('#middle div.panel ul.options>li>a.panel_colapse').bind("click", function(e) {
