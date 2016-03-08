@@ -39,7 +39,12 @@
                                     <tbody>
                                     <tr ng-repeat=" region in regiones">
                                         <td>{{region.nombre}}</td>
-                                        <td>{{region.status}}</td>
+                                        <td>
+                                            <label class="switch switch-success">
+                                                <input type="checkbox" ng-checked="region.status">
+                                                <span class="switch-label" data-on="YES" data-off="NO"></span>
+                                            </label>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 </table>
