@@ -33,10 +33,20 @@ class Estado extends MongoDb{
         return  $regionEdo;
     }
 
-    public function hola()
+    /**
+     * Retorna solo los estados
+     * @return \MongoCursor
+     */
+    public function getSoloEstados()
     {
-        return 'aja';
+       $data    =    $this->getCollection()->find([],['identificador'=>1,'nombre'=>1]);
+        return  $data;
     }
 
+    public function getEstadoyRegiones($idEstado)
+    {
+        $data       =    $this->getCollection()->find(['_id'=>$idEstado]);
+        return  $data;
+    }
 
 }

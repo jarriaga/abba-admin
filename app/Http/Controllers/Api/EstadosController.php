@@ -21,16 +21,21 @@ class EstadosController extends Controller
 
     }
 
-
     public function index()
     {
         $estados    =   new Estado();
-        $estados    =   $estados->getCollection()->find([],['identificador'=>1,'nombre'=>1]);
+        $estados    =   $estados->getSoloEstados();
         $result     =   [];
         foreach ($estados as $estado) {
             $result[] = [ "id"=>$estado["_id"]->{'$id'}, "nombre"=>$estado["nombre"] ];
         }
 
-        return  $result;
+        return  response()->json($result,200);
+    }
+
+    public function getEstado($idEstado)
+    {
+        $estado     =   new Estado();
+        $estadoInfo =   $estado->getEstadoyRegiones($idEstado);
     }
 }

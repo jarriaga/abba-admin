@@ -8,6 +8,13 @@
  */
 moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scope,$http){
 
+    $scope.estadosApi = [];
+    $scope.data={};
+
+    $scope.cambiarEstado = function(){
+        console.log($scope.data);
+    }
+
     //function to retrieve all estados from the API
     $scope.getEstados   =   function(){
         $http({
@@ -15,8 +22,9 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
             url     :   '/api/estados'
         })
             .then(function( response ){
-                //Success response
-
+                $scope.estadosApi = response.data;
+                console.log(response);
+                    jQuery('select.select2').select2();
             },
                 function( response ){
                     //Error response
@@ -25,12 +33,7 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
             );
     };
 
-
-
-
-
-
-
+    $scope.getEstados();
 
 
     // *********************************    CODE FOR JQUERY ONLY
@@ -63,7 +66,7 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
                 button.toggleClass('plus').toggleClass('');
             });
 
-            jQuery('select.select2').select2();
+
 
         });
 

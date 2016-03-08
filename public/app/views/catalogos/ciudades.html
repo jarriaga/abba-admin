@@ -15,17 +15,18 @@
                 </div>
                 <!-- panel content -->
                 <div class="panel-body" style="display: block;">
-                    selecciona el estado
-                    <select class="form-control select2">
-                        <option value="">--- Select 2 ---</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">option 2</option>
-                        <option value="3">option 3</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-md-6">
+                        selecciona el estado
+                        <select class="form-control select2" ng-model="data.estadoSeleccionado" ng-change="cambiarEstado()">
+                            <option value="">--- Selecciona tu estado ---</option>
+                           <option ng-repeat="option in estadosApi" value="{{option.id}}">{{option.nombre}}</option>
+                        </select>
+                        </div>
+                    </div>
                 </div>
                 <!-- /panel content -->
             </div>
         </div>
     </div>
 </section>
-
