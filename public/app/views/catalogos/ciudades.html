@@ -28,18 +28,19 @@
                     <div class="row">
                         <div class="col-md-12">
                             <br>
+                            <h4 class="text-center">{{nombreEstado  | uppercase}}</h4>
                             <div class="table-responsive">
                                 <table class="table table-striped nomargin">
                                     <thead>
                                     <tr>
-                                        <th>Region</th>
-                                        <th>Status</th>
+                                        <th>Municipio</th>
+                                        <th>Activado</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr ng-repeat=" region in regiones">
                                         <td>{{region.nombre}}</td>
-                                        <td>
+                                        <td class="td-small">
                                             <label class="switch switch-success">
                                                 <input type="checkbox" ng-checked="region.status" ng-click="activarRegion(region.id,data.estadoSeleccionado,region.status)">
                                                 <span class="switch-label" data-on="YES" data-off="NO"></span>

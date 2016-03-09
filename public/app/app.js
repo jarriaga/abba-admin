@@ -15,11 +15,8 @@ var moduleCatalogos =   angular.module('moduleCatalogos',[]);
 
 
 app.controller('mainController',['$scope','AuthenticationService',function($scope,AuthenticationService){
-
+    //Pasamos el servicio de authenticacion para detectar cuando el usuario este logueado
     $scope.main = AuthenticationService;
-
-
-
 }]);
 
 var options = {};
