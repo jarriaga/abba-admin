@@ -41,7 +41,7 @@
                                         <td>{{region.nombre}}</td>
                                         <td>
                                             <label class="switch switch-success">
-                                                <input type="checkbox" ng-checked="region.status">
+                                                <input type="checkbox" ng-checked="region.status" ng-click="activarRegion(region.id,data.estadoSeleccionado,region.status)">
                                                 <span class="switch-label" data-on="YES" data-off="NO"></span>
                                             </label>
                                         </td>

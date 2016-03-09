@@ -20,7 +20,7 @@ app.config( ['$routeProvider',
             .when('/ciudades',{
                 templateUrl :   'app/views/catalogos/ciudades.html',
                 controller  :   'ciudadesController',
-                access      :   {   requiredAuthentication  :   false  }
+                access      :   {   requiredAuthentication  :   true  }
             })
             .when('/', {
                 templateUrl :   'app/views/admin/index.html',

@@ -22,6 +22,10 @@ $app->post('/auth/logout', ['as'=>'authentication','uses'=>'AuthController@postL
 $app->post('/data',['as'=>'data','uses'=>'AuthController@postData']);
 
 
-$app->get('/api/estados',['as'=>'api_estados','uses'=>'Api\EstadosController@index']);
-$app->get('/api/estado/{idEstado}',['as'=>'api_estado','uses'=>'Api\EstadosController@getEstado']);
+$app->post('/api/estados',['as'=>'api_estados','uses'=>'Api\EstadosController@index']);
+$app->post('/api/estado/{idEstado}',['as'=>'api_estado','uses'=>'Api\EstadosController@getRegiones']);
 
+
+/* Admin api */
+
+$app->post('/api/region/change-status/',['as'=>'api_region_changeStatus','uses'=>'Api\EstadosController@changeStatusRegion']);

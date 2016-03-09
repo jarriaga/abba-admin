@@ -63,4 +63,20 @@ class Estado extends MongoDb{
         return  $result;
     }
 
+
+    public function updateStatusRegion($idEstado, $idMunicipio, $status)
+    {
+        $update =   $this->getCollection()->update(
+            [   '_id'                   =>     new \MongoId($idEstado),
+                'region._idMunicipio'   =>     new \MongoId($idMunicipio)
+            ],
+            [
+                '$set'                  =>      ['region.$.status'   => ($status)?0:1]
+            ]
+        );
+
+        return  $update;
+
+    }
+
 }

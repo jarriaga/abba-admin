@@ -12,16 +12,28 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
     $scope.data={};
     $scope.regiones={};
 
+    //funcion para mostrar las regiones de un estado
     $scope.cambiarEstado = function(){
-        console.log($scope.data);
         $http({
-           method   :   'GET',
+           method   :   'POST',
             url     :   '/api/estado/'+$scope.data.estadoSeleccionado
         }).then(function(response){
             $scope.regiones =   response.data;
-          console.log(response.data);
         },  function(   response ){
             //error
+        });
+
+    }
+
+    $scope.activarRegion    =   function(idRegion,idEstado,idStatus){
+        $http({
+            method  :   'POST',
+            url     :   '/api/region/change-status',
+            data    :   {region:idRegion,estado:idEstado,status:idStatus}
+        }).then(function(response){
+
+        },function(response){
+
         });
 
     }
@@ -29,13 +41,12 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
     //function to retrieve all estados from the API
     $scope.getEstados   =   function(){
         $http({
-            method  :   'GET',
+            method  :   'POST',
             url     :   '/api/estados'
         })
             .then(function( response ){
                 $scope.estadosApi = response.data;
-                console.log(response);
-                    jQuery('select.select2').select2();
+                jQuery('select.select2').select2();
             },
                 function( response ){
                     //Error response
@@ -45,8 +56,14 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
     };
 
     $scope.getEstados();
+    paneles();
+
+}]);
 
 
+
+
+function paneles(){
     // *********************************    CODE FOR JQUERY ONLY MINIMIZAR PANELES
     (function(){
         jQuery(document).ready(function(){
@@ -82,9 +99,4 @@ moduleCatalogos.controller('ciudadesController',['$scope','$http',function($scop
         });
 
     })();
-
-}]);
-
-
-
-
+}
